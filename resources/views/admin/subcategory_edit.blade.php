@@ -59,6 +59,8 @@ $("#category").change(function(){
 		</div>
 </div>
 		<div class="panel-footer">
+                    <a href="{{asset('admin/ca_contactos_subcategorias?return_url=https://contactotecnologico.com/compuagenda/public/admin/ca_contactos20&parent_table=ca_contactos&parent_columns=name&parent_columns_alias=&parent_id='.$contacto_id.'&foreign_key=ca_contactos_id&label=Categorias')}}" class="btn btn-default">
+                        <i class="fa fa-chevron-circle-left"></i> Volver</a>
 <button type="submit" class=" btn btn-primary">Guardar</button>
 </div>
 

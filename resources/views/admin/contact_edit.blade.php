@@ -105,6 +105,8 @@ $("#category").change(function(){
 </div>
 
 		<div class="panel-footer">
+                     <a href="{{asset('admin/ca_contactos20')}}" class="btn btn-default">
+                        <i class="fa fa-chevron-circle-left"></i> Volver</a>
 <button type="submit" class=" btn btn-primary">Editar</button>
 </div>
 </div>
