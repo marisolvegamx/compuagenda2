@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-180998851-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-180998851-1');
+</script>
+
     <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="directorio de empresas y personas que ofrecen servicios y productos de sistemas computacionales y tecnologias de información">
-     <meta content="" name="keywords">
+    <meta name="description" content="directorio de empresas y profesionales que ofrecen servicios y productos de sistemas computacionales y tecnologias de información">
+     <meta content="sistemas computacionales, tecnologías de información, software administrativo,ti,  comercio electrónico,  contacto tecnologico, directorio empresas mexico, empresas ti mexico, procesamiento de datos, seguridad de informacion,instalacion de redes, accesorios e insumos de computadoras, software a la medida,
+     diseño web, capacitación y entrenamiento informatico, publicidad gratis,aumentar clientes,
+     desarrollo movil, desarrollo de sistemas, empresas de consultoria mexico" name="keywords">
+
 <!--  este es el template -->
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Contactotecnologico') }}</title>
 
     <!-- Scripts -->
     
@@ -18,18 +31,15 @@
 			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 			  crossorigin="anonymous"></script>
     
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.js"></script>
+    <script src="{{asset('/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
   
      @yield('scripts')
 
      <!-- Styles -->
-     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-      <link href="{{ asset('/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+       <link href="{{ asset('/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
       <link href="{{ asset('/css/style.css')}}" rel="stylesheet">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-     <link href="{{ asset('/vendor/icofont/icofont.min.css')}}" rel="stylesheet">
+   <link rel="stylesheet" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body>
    
@@ -37,14 +47,20 @@
     <div class="container d-flex align-items-center">
 
         <div class="logo float-left">
-      <img alt="Contacto Tecnológico" src="{{ asset('/img/logo1.png') }}" height="56"></h1>
+      <a  href="{{ url('/') }}">
+       <img alt="Contacto Tecnológico" src="{{ asset('/img/logo1.png') }}" height="56">
+       </a>
       </div>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
         <nav class="nav-menu float-right d-none d-lg-block" >
         <ul>
-            <li>  <a  href="{{ url('/') }}">Inicio
+         <li>  <a  href="{{ url('/home') }}">Acerca de
+              
+              </a>
+            </li>
+            <li>  <a  href="{{ url('/') }}">Buscar
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -77,7 +93,7 @@
 <!--               <a  href="#">Preguntas frecuentes</a> -->
 <!--             </li> -->
             <li >
-              <a  href="{{asset('sugerencias')}}">Contacto</a>
+              <a  href="{{asset('sugerencias')}}">Contáctanos</a>
             </li>
 			
           </ul>
@@ -94,114 +110,7 @@
 	@endguest
 	</div>
 	</header>
-	 <main id="main">
-
-     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-        
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
-	
-
-    
-    
-
-    <!-- Page Content -->
-     <!-- ======= Blog Section ======= -->
-    <section class="blog" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-       <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-8 entries">
-        @if(session("info"))
-       
-        <div class="row">
-        <div class="col-md-12">
-        <div class="alert alert-success">{{ session("info") }}</div></div>
-        </div>
-       
-        @endif
-        @if(count($errors))
-       
-        <div class="row">
-        <div class="col-md-12">
-        <div class="alert alert-danger">
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-        </div></div>
-        </div>
-        
-        @endif
-            @yield('content')
-      
-    </div>
-
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-         <!-- Search Widget -->
-           <div class="sidebar">
-
-              
-            <div class="sidebar-item search-form">
-            <span style="text-align:center; color: #556270;">
-           <h4> LOS 100 PRIMEROS REGISTROS GRATIS!!
-            APROVECHA Y REGISTRATE AHORA    </h4>
-            
-            </span>
-            <div style="text-align:center; padding-top:10px">
-            <span  >
-                   <a  href="{{ route('registerform') }}"  class="get-started-btn ml-auto">{{ __('Registro gratis') }}</a>
-                                
-                </span>
-             </div>
-            </div>
-          </div>
-          
-          <!-- Categories Widget -->
-           <div class="sidebar">
-             <h3 class="sidebar-title"><i class="icofont-ui-search"></i>Categorias más buscadas</h3>
-            <div class="sidebar-item categories">
-                
-           
-              @if(!empty($arreglocat))
-               
-              @foreach ($arreglocat as $itemcat)
-              @if (!empty($itemcat[0]))
-               
-                  <ul >
-                  @foreach($itemcat as $cat)
-                    <li>
-                      <a href="{{asset('etiqueta/'.$cat->slug)}}">{{$cat->name}}</a>
-                    </li>
-                   @endforeach
-                  </ul>
-             
-                @endif
-                @endforeach
-              @endif
-              </div>
-            </div>
-          </div>
-
-         
-       
-        
-        </div>
-          
-      
-      <!-- /.row -->
-
-      </section><!-- End Blog Section -->
-
-  </main><!-- End #main -->
+    @yield('home')
 
   <!-- ======= Footer ======= -->
   <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
@@ -211,8 +120,8 @@
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
                             <h4>¿Quiénes somos?</h4>
-                            <p>Contacto tecnológico es un directorio que agrupa las empresas y particulares mexicanos que ofrecen servicios y productos relacionados con sistemas computacionales y tecnologías de información</p>
-                            <p>para poner al alcance de los usuarios una referencia y rápida forma de encontrar servicios o vendedores de productos cuando lo requiera.</p>
+                            <p>Contacto tecnológico es un directorio que agrupa las empresas y profesionales mexicanos que ofrecen servicios y productos relacionados con sistemas computacionales y tecnologías de información
+                            para ayudarlos a encontrar nuevos clientes y servir alos usuarios como una referencia y rápida forma de encontrar servicios o vendedores de productos cuando lo requiera.</p>
                         </div>
                      
                    
@@ -239,7 +148,7 @@
                                                             
                                      <li><i class="bx bx-chevron-right"></i><a href="{{asset('sugerencias')}}">Ayuda y soporte</a></li>
                                
-                                     <li><i class="bx bx-chevron-right"></i><a href="{{asset('privacidad')}}">Política de privacidad</a></li>
+                                     <li><i class="bx bx-chevron-right"></i><a href="{{asset('avisoprivacidad.pdf')}}" target="_blank">Política de privacidad</a></li>
                                
                             </ul>
                         </div>
@@ -247,11 +156,11 @@
                    
                      <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-                            <h3>Contacto</h3>
+                            <h3>Contactános</h3>
                           <p>
-                               <i class="icofont-phone"></i>  <strong>Telefono:</strong>55-7349-35-29 <br> 
+                              <i class="bi bi-telephone-fill"></i>  <strong>Telefono:</strong><a href="https://api.whatsapp.com/send?1=pt_BR&phone=5546608214&text=informacion" traget="_blank">55-46-60-82-14</a><br> 
                           
-                               <i class="icofont-envelope"> </i> <strong>Email:</strong><a href="mailto:soporte@contactotecnologico.com">soporte@contactotecnologico.com</a> <br></p> 
+                               <i class="bi bi-envelope-fill"> </i> <strong>Email:</strong><a href="mailto:soporte@contactotecnologico.com">soporte@contactotecnologico.com</a> <br></p> 
                             </div>
                         
                   
@@ -274,8 +183,13 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+  <a href="#" class="back-to-top"><i class="bi bi-arrow-up-short"></i></a>
 <!-- Template Main JS File -->
+ <script src="{{asset('vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+<script src="{{asset('vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{asset('vendor/venobox/venobox.min.js')}}"></script>
+  <script src="{{asset('vendor/waypoints/jquery.waypoints.min.js')}}"></script>
+   <script src="{{asset('vendor/owl.carousel/owl.carousel.min.js')}}"></script>
   <script src="{{ asset('/js/main.js')}}"></script>
  
 </body>
