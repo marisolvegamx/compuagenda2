@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Subcategory;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //ligas de categorias
+       //ligas de categorias
         //despues se cambiará por las más buscadas
         $subcategorias=   Subcategory::limit(3)->get();
       

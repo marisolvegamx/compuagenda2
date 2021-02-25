@@ -39,8 +39,8 @@ use App\Subcategory;
      ca_subcategorias 
       
     INNER JOIN ca_categorias 
-        ON (ca_subcategorias.ca_categorias_id = ca_categorias.id) where ca_subcategorias.id=ca_contactos_subcategorias.ca_subcategorias_id) as name"];
-			$this->col[] = ["label"=>"Subcategorias Id","name"=>"ca_subcategorias_id","join"=>"ca_subcategorias,name"];
+        ON (ca_subcategorias.ca_categorias_id = ca_categorias.id) where ca_subcategorias.id=ca_contactos_subcategorias.ca_subcategorias_id order by ca_categorias.name ) as name"];
+			$this->col[] = ["label"=>"Subcategorias","name"=>"ca_subcategorias_id","join"=>"ca_subcategorias,name"];
 // 			$this->col[]=["label"=>"Categoria","name"=>"ca_contactos_id"];
 // 			$this->col[] = ["label"=>"Subcategorias Id","name"=>"ca_subcategorias_id"];
 			

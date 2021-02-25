@@ -13,19 +13,21 @@ class MailRegister extends Mailable
 
     private $name;
     private $opcion;
-    private $corre;
-    private $empresa;
+    private $paginahtml;
+    private $ligacomentario;
+    private $comentario;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $opcion,$correo=null, $empresa=null)
+    public function __construct($name, $opcion,$correo=null, $comentario=null,$ligacomentario=null)
     {
        $this->name=$name;
        $this->opcion=$opcion;
-       $this->correo=$correo;
-       $this->empresa=$empresa;
+       $this->paginahtml=$correo;
+       $this->ligacomentario=$ligacomentario;
+       $this->comentario=$comentario;
     }
 
     /**
@@ -36,8 +38,11 @@ class MailRegister extends Mailable
     public function build()
     {
         if($this->opcion=="regusu")
-        return $this->subject("Hemos recibido tu registro a contactotecnologico.com")->from("contacto@innovacionenti.com")
+        return $this->subject("Hemos recibido tu registro a contactotecnologico.com")->from("servicioaclientes@contactotecnologico.com ","Contacto Tecnologico")
         ->view('correos.correoregistro')->with(["nombre"=>$this->name]);
+          if($this->opcion=="noticomen")
+        return $this->subject("Comentarios en tu perfil")->from("servicioaclientes@contactotecnologico.com ","Contacto Tecnologico")
+        ->view('correos.avisocomentario')->with(["nombre"=>$this->name,"comentario_inicio"=>$this->comentario,"ligacoment"=>$this->ligacomentario]);
         
                    
     }

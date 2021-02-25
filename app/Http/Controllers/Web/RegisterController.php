@@ -56,7 +56,7 @@ class RegisterController extends Controller
          //para las etiquetas
          $contacto->subcategorias()->sync($request->get('subcategorias'));
          //envio correos
-         $this->enviarCorreo($request->emailusu);
+         $this->enviarCorreo($request->emailusu,$request->name);
          $this->enviarCorreoAdmin($request->nameusu, $request->emailusu, $contacto->id);
          return view("web.resregister");
          
@@ -69,7 +69,7 @@ class RegisterController extends Controller
         Mail::send("correos.avisoadmin",$data,function($msj) use ($subject,$to){
             $msj->subject($subject);
             $msj->to($to);
-            $msj->from("contacto@innovacionenti.com", "Contacto tecnologico");
+            $msj->from("servicioaclientes@contactotecnologico.com", "Contacto tecnologico");
          //   $msj->send();
         });
     }
@@ -78,9 +78,9 @@ class RegisterController extends Controller
 //         Mail::to($usuario)->send(new MailRegister($usuario));
 //     }
     
-    public function enviarCorreo($usuario){
+    public function enviarCorreo($usuario,$correo){
      
-        Mail::to($usuario)->send(new MailRegister($usuario,"regusu"));
+        Mail::to($correo)->send(new MailRegister($usuario,"regusu"));
     }
     
     public function result(){

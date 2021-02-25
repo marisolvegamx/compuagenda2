@@ -51,13 +51,14 @@ class PageController extends Controller
             $contacts=Contact::orderBy('id')->where('status','1')->name($nombre)->state($state)
             ->subcategory($subcategoria,$categoria)
             ->paginate(10);
-            $queries = DB::getQueryLog();
+          //  $queries = DB::getQueryLog();
           //  var_dump($queries);
-            return view('home',compact('categorias','estados','subcategorias','contacts')); //carpeta.archiv
-        }else {
-            return view('home',compact('categorias','estados'))->with("notification","No se encontraron contactos con esa busqueda, prueba otra"); //carpeta.archiv
+         if($contacts->count())
+            return view('web.contacts',compact('categorias','estados','subcategorias','contacts')); //carpeta.archiv
+         else
+              return view('home',compact('categorias','estados','subcategorias','contacts'))->with("notification","No se encontraron resultados con esa búsqueda. Prueba buscar por otros filtros"); //carpeta.archiv
             
-            ;
+                
         }
     }
     public function register(Request $request){
@@ -82,28 +83,39 @@ class PageController extends Controller
 // 	    }
 // 	    var_dump($subcategorias); die();
 	    $comentarios=$contact->comments;
+	    //busco su calificacion
+	    $query = "SELECT rating_number, FORMAT((total_points / rating_number),1) as average_rating 
+FROM ca_contactos_rating WHERE ca_contactos_id =".$contact->id."  AND status = 1";
+	    $rating=DB::table("ca_contactos_rating")->select(DB::raw("rating_number, FORMAT((total_points / rating_number),1) as average_rating "))
+	                                           ->where([["ca_contactos_id",$contact->id],["status",1]])->get();
+        foreach($rating as $rat){
+            $average_rating= $rat->average_rating;
+            $rating_number=$rat->rating_number;
+        }
 	  //  var_dump($comentarios); die();
 // 		echo $contact->categorias;
-		return view('web.contact',compact('contact',"comentarios"));
+		return view('web.contact',compact('contact',"comentarios","average_rating", "rating_number"));
 	}
 	
 	public function category($slug){
 	
-		$categoria=Category::where('slug',$slug)->pluck('id')->first();//solo quiero el id
-		$contacts=Contact::whereHas('subcategorias',function($q) use ($subcategoria){
-		    $q->category($categoria);
+		$categoria=Category::where('slug',$slug)->first();//solo quiero el id
+                $id=$categoria->id;
+		$contacts=Contact::whereHas('subcategorias',function($q) use ($id){
+		    $q->category($id);
 		})->orderBy('id')->where('status','1')->paginate(10);
-		return view('web.contacts',compact('contacts'));
+                  $slugvisible=$categoria->name;
+		return view('web.contacts',compact('contacts','slugvisible'));
 		
 	}
 	public function subcategory($slug){
-	    $subcategoria=Subcategory::where('slug',$slug)->pluck('id')->first();//solo quiero el id
+	    $subcategoria=Subcategory::where('slug',$slug)->first();//solo quiero el id
 	   
-	    if($subcategoria!=null)
-	    $contacts=Contact::subcategory($subcategoria,null)
+	    if($subcategoria->id!=null)
+	    $contacts=Contact::subcategory($subcategoria->id,null)
 		->orderBy('id')->where('status','1')->paginate(10);
-		
-		return view("web.contacts",compact("contacts"));
+	    $slugvisible=$subcategoria->name;
+		return view("web.contacts",compact("contacts","slugvisible"));
 		
 	}
 	
@@ -129,7 +141,7 @@ class PageController extends Controller
 	    Mail::send("correos.sugerencia",$data,function($msj) use ($subject,$to){
 	        $msj->subject($subject);
 	        $msj->to($to);
-	        $msj->from("contacto@innovacionenti.com", "Contacto tecnológico");
+	        $msj->from("servicioaclientes@contactotecnologico.com", "Contacto tecnológico");
 	        //   $msj->send();
 	    });
 	}

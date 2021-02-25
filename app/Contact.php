@@ -26,7 +26,11 @@ class Contact extends Model
     }
     
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,"cms_users_id","id");
+    }
+    public function rating(){
+        return $this->hasOne(Comment::class, "ca_contactos_id");
+        
     }
     
     public function scopeName($query, $flag) {
