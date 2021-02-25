@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.blogmode')
 @section('scripts')
 
 <style type="text/css">
@@ -114,7 +114,7 @@ function preguntarAntesDeSalir()
 
 	</fieldset>
 <fieldset  id="fil2" style="margin-top:2em">
-<h2> Paso 2: Agregar detalle de la empresa o persona</h2>	<div style="margin-bottom:2em">	<span style="color: #6b7b8d">Los campos marcados con * son obligatorios</span>
+<h2> Paso 2: Agregar detalle de la empresa o profesional</h2>	<div style="margin-bottom:2em">	<span style="color: #6b7b8d">Los campos marcados con * son obligatorios</span>
 		</div>
 <div class="form-group">
 {{ Form::label('name','Nombre de empresa o persona*') }}
@@ -172,8 +172,8 @@ function preguntarAntesDeSalir()
 		<div id="subcategory">
 	</div></div>
 	<div class="form-group">
-	<p> <i class="icofont-exclamation-circle"></i>¿No está la categoría que buscas? envianos un correo y la agregamos 
-	  <a  href="{{asset('sugerencias')}}" target="_blank"><i class="icofont-envelope"> </i>Contacto</a></p>
+	<p> <i class="bi bi-exclamation-circle-fill"></i>¿No está la categoría que buscas? envianos un correo y la agregamos 
+	  <a  href="{{asset('sugerencias')}}" target="_blank"><i class="bi bi-envelope-fill"> </i>Contacto</a></p>
 	 
 		</div>
 {{ Form::button('Previo',['class'=>'previous btn btn-light']) }}

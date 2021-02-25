@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.blogmode')
 @section('scripts')
 
  @section('content')

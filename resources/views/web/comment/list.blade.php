@@ -2,7 +2,7 @@
 
               <div  class="comment clearfix">
 <!--                 <img src="{{asset('img/comments-1.jpg')}}" class="comment-img  float-left" alt=""> -->
-             <span>   <i class="icofont-user-alt-5"></i></span>
+             <span>   <i class="bi bi-person-fill"></i></span>
                 <h5>{{$comment->user}}</h5>
                 <time datetime="">{{ $comment->created_at }}</time>
                 <p>

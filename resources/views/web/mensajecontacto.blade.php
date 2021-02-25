@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.blogmode')
 @section('scripts')
 
   
@@ -26,7 +26,7 @@ $("#formcoment").submit(function(){
 @section('content')
 
 	<div class="col md-offset-2">
-	<h2>Contacto</h2>
+	<h2>Contáctanos</h2>
 	<div class="card ">
     	<div class="card-header">
     	
